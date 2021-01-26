@@ -37,8 +37,7 @@ resource "google_compute_firewall" "default" {
     protocol = "tcp"
     ports    = ["1-65535"]
   }
-
-  source_tags = ["web"]
+  source_ranges = ["0.0.0.0/0"]
 }
 
 resource "google_compute_network" "default" {
