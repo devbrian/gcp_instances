@@ -1,1 +1,1 @@
-touch tmp/asd
+touch /tmp/asd
