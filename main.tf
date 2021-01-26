@@ -21,8 +21,8 @@ resource "google_compute_instance" "example" {
     access_config {
     }
   }
- 
- metadata_startup_script = "${file("scripts/startup.sh")}"
+
+  metadata_startup_script = file("scripts/startup.sh")
 }
 
 resource "google_compute_firewall" "default" {
