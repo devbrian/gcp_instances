@@ -1,1 +1,1 @@
-echo "hi"
+touch tmp/asd
