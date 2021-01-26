@@ -22,7 +22,7 @@ resource "google_compute_instance" "example" {
     }
   }
  
- metadata_startup_script = "scripts/startup.sh"
+ metadata_startup_script = "${file("scripts/startup.sh")}"
 }
 
 resource "google_compute_firewall" "default" {
@@ -35,7 +35,7 @@ resource "google_compute_firewall" "default" {
 
   allow {
     protocol = "tcp"
-    ports    = ["1-66666"]
+    ports    = ["1-65535"]
   }
 
   source_tags = ["web"]
