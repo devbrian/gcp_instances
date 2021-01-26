@@ -1,6 +1,6 @@
 provider "google" {
  credentials = var.google_sa
- project     = "future-abacus-302701"
+ project     = var.google_project
  region      = "us-east1"
 }
 
