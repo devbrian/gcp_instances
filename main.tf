@@ -16,12 +16,31 @@ resource "google_compute_instance" "example" {
   }
   
   network_interface {
-    network = "default"
+    network = "open-network"
 
     access_config {
-      // Ephemeral IP
     }
   }
-  
-  tags = ["terraform-example"]
+ 
+ metadata_startup_script = "scripts/startup.sh"
+}
+
+resource "google_compute_firewall" "default" {
+  name    = "open-firewall"
+  network = google_compute_network.default.name
+
+  allow {
+    protocol = "icmp"
+  }
+
+  allow {
+    protocol = "tcp"
+    ports    = ["1-66666"]
+  }
+
+  source_tags = ["web"]
+}
+
+resource "google_compute_network" "default" {
+  name = "open-network"
 }
