@@ -33,6 +33,10 @@ variable "s1user" {
   default = ""
 }
 
+variable "rclone_file" {
+  description = "rclone file content"
+  default = ""
+}
 variable "s1pass" {
   description = "nzbget server 1 pass"
   default = ""
