@@ -9,6 +9,7 @@ mv /tmp/nzbget.conf /opt/nzbget/nzbget.conf
 chmod 777 /opt/nzbget/nzbget.conf
 
 curl https://rclone.org/install.sh | sudo bash
+mkdir --parents /root/.config/rclone/
 mv /tmp/rclone.conf /root/.config/rclone/rclone.conf
 
 systemctl enable nzbget.service
