@@ -8,6 +8,13 @@ data "template_file" "nzbget_template" {
   }
 }
 
+data "template_file" "rclone_template" {
+  template = file("files/rclone.conf")
+  vars = {
+    rclone_file = var.rclone_file
+  }
+}
+
 provider "google" {
  credentials = var.google_sa
  project     = var.google_project
@@ -61,7 +68,7 @@ resource "google_compute_instance" "instance1" {
    }
   
    provisioner "file" {
-        content = var.rclone_file
+        content = data.template_file.rclone_template.rendered
         destination = "/tmp/rclone.conf"
         connection {
             type = "ssh"
