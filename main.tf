@@ -48,6 +48,17 @@ resource "google_compute_instance" "instance1" {
             private_key = var.privatekey
         }
    }
+  
+   provisioner "file" {
+        source = "files/services/nzbget.service"
+        destination = "/etc/systemd/system/nzbget.service"
+        connection {
+            type = "ssh"
+            host = google_compute_instance.instance1.network_interface.0.access_config.0.nat_ip
+            user = "root"
+            private_key = var.privatekey
+        }
+   }
 }
 
 resource "google_compute_firewall" "default" {
