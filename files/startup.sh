@@ -21,7 +21,7 @@ mkdir --parents /root/.config/rclone/
 mv /tmp/rclone.conf /root/.config/rclone/rclone.conf
 
 git clone https://github.com/l3uddz/cloudplow /opt/cloudplow
-apt-get install python3-pip -y
+apt-get install -y python3-pip unzip 
 cd /opt/cloudplow
 python3 -m pip install -r requirements.txt
 ln -s /opt/cloudplow/cloudplow.py /usr/local/bin/cloudplow
@@ -29,7 +29,7 @@ mv /tmp/config.json /opt/cloudplow/config.json
 
 mkdir /root/keys
 cd /root/keys
-rclone copy google:/Backups/keys.zip .
+rclone copy google:/Backups/keys.zip /root/keys/
 unzip keys.zip
 rm keys.zip
 
