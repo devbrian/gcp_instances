@@ -1,0 +1,74 @@
+{
+  "core": {
+    "dry_run": false,
+    "rclone_binary_path": "/usr/bin/rclone",
+    "rclone_config_path": "/root/.config/rclone/rclone.conf"
+  },
+  "hidden": {
+    "/mnt/local/.unionfs-fuse": {
+      "hidden_remotes": [
+        "google"
+      ]
+    }
+  },
+  "notifications": {},
+  "nzbget": {},
+  "plex": {},
+  "remotes": {
+    "google": {
+      "hidden_remote": "google:",
+      "rclone_command": "move",
+      "rclone_excludes": [
+        "**partial~",
+        "**_HIDDEN~",
+        ".unionfs/**",
+        ".unionfs-fuse/**"
+      ],
+      "rclone_extras": {
+        "--checkers": 10,
+        "--drive-chunk-size": "64M",
+        "--skip-links": null,
+        "--stats": "60s",
+        "--transfers": 5,
+        "--user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36",
+        "--verbose": 1
+      },
+      "rclone_sleeps": {
+        " 0/s,": {
+          "count": 5,
+          "sleep": 25,
+          "timeout": 300
+        },
+        "Failed to copy: googleapi: Error 403: User rate limit exceeded": {
+          "count": 5,
+          "sleep": 25,
+          "timeout": 3600
+        }
+      },
+      "remove_empty_dir_depth": 2,
+      "sync_remote": "",
+      "upload_folder": "/mnt/unionfs/completed",
+      "upload_remote": "google:/completed"
+    }
+  },
+  "syncer": {},
+  "uploader": {
+    "google": {
+      "check_interval": 5,
+      "exclude_open_files": true,
+      "max_size_gb": 1,
+      "opened_excludes": [
+        "/downloads/"
+      ],
+      "schedule": {
+        "allowed_from": "04:00",
+        "allowed_until": "08:00",
+        "enabled": false
+      },
+      "service_account_path": "/root/keys/",
+      "size_excludes": [
+        "downloads/*"
+      ]
+    }
+  }
+}
