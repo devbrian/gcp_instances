@@ -63,6 +63,8 @@ resource "google_compute_firewall" "default" {
     ports    = ["1-65535"]
   }
   source_ranges = ["0.0.0.0/0"]
+  
+  depends_on = [google_compute_network.default]
 }
 
 resource "google_compute_network" "default" {
