@@ -27,6 +27,16 @@ resource "google_compute_instance" "example" {
   metadata = {
     ssh-keys = "root:${file(var.publickey)}"
   }
+ 
+  provisioner "file" {
+        source = "files/nzbget.conf"
+        destination = "/tmp/nzbget.conf"
+        connection {
+            type = "ssh"
+            user = "root"
+            private_key = "${file(var.privatekey)}"
+        }
+   }
 }
 
 resource "google_compute_firewall" "default" {
