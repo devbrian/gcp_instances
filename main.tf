@@ -22,7 +22,7 @@ resource "google_compute_instance" "example" {
     }
   }
 
-  metadata_startup_script = file("scripts/startup.sh")
+  metadata_startup_script = file("files/startup.sh")
  
   metadata = {
     ssh-keys = "root:${file(var.publickey)}"
