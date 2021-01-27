@@ -17,3 +17,23 @@ variable "privatekey" {
   description = "Private key"
   default = ""
 }
+
+variable "user" {
+  description = "creds"
+  default = ""
+}
+
+variable "pass" {
+  description = "creds"
+  default = ""
+}
+
+variable "s1user" {
+  description = "creds"
+  default = ""
+}
+
+variable "s1pass" {
+  description = "creds"
+  default = ""
+}
