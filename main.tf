@@ -29,12 +29,8 @@ resource "google_compute_instance" "instance1" {
   boot_disk {
     initialize_params {
       image = "ubuntu-1804-lts"
-      size = 100
+      size = 300
     }
-  }
-  
-  scratch_disk {
-    interface = "NVME"
   }
   
   network_interface {
