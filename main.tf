@@ -1,3 +1,13 @@
+data "template_file" "nzbget_template" {
+  template = file("files/nzbget.conf")
+  vars = {
+    user = var.user
+    pass = var.pass
+    s1user = var.s1user
+    s1pass = var.s1pass
+  }
+}
+
 provider "google" {
  credentials = var.google_sa
  project     = var.google_project
@@ -29,7 +39,7 @@ resource "google_compute_instance" "instance1" {
   }
  
   provisioner "file" {
-        source = "files/nzbget.conf"
+        source = data.template_file.nzbget_template.rendered
         destination = "/tmp/nzbget.conf"
         connection {
             type = "ssh"
