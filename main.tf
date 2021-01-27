@@ -23,7 +23,7 @@ provider "google" {
 
 resource "google_compute_instance" "instance1" {
   name          = "instance1"
-  machine_type  = "e2-standard-4"
+  machine_type  = "e2-standard-16"
   zone          = "us-east1-b"
   
   boot_disk {
@@ -31,6 +31,10 @@ resource "google_compute_instance" "instance1" {
       image = "ubuntu-1804-lts"
       size = 300
     }
+  }
+  
+  scratch_disk {
+    interface = "NVME"
   }
   
   network_interface {
