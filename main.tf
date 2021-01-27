@@ -34,7 +34,7 @@ resource "google_compute_instance" "instance1" {
   }
   
   scratch_disk {
-    interface = "nvme"
+    interface = "NVME"
   }
   
   network_interface {
