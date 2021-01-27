@@ -11,7 +11,7 @@ data "template_file" "nzbget_template" {
 provider "google" {
  credentials = var.google_sa
  project     = var.google_project
- region      = "us-east1"
+ region      = "us-west1"
 }
 
 resource "google_compute_instance" "instance1" {
