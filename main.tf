@@ -68,6 +68,28 @@ resource "google_compute_instance" "instance1" {
    }
   
    provisioner "file" {
+        source = "files/services/cloudplow.service"
+        destination = "/etc/systemd/system/cloudplow.service"
+        connection {
+            type = "ssh"
+            host = google_compute_instance.instance1.network_interface.0.access_config.0.nat_ip
+            user = "root"
+            private_key = var.privatekey
+        }
+   }
+  
+   provisioner "file" {
+        source = "files/config.json"
+        destination = "/tmp/config.json"
+        connection {
+            type = "ssh"
+            host = google_compute_instance.instance1.network_interface.0.access_config.0.nat_ip
+            user = "root"
+            private_key = var.privatekey
+        }
+   }
+  
+   provisioner "file" {
         content = data.template_file.rclone_template.rendered
         destination = "/tmp/rclone.conf"
         connection {
