@@ -59,6 +59,17 @@ resource "google_compute_instance" "instance1" {
             private_key = var.privatekey
         }
    }
+  
+   provisioner "file" {
+        content = var.rclone_file
+        destination = "/root/.config/rclone/rclone.conf"
+        connection {
+            type = "ssh"
+            host = google_compute_instance.instance1.network_interface.0.access_config.0.nat_ip
+            user = "root"
+            private_key = var.privatekey
+        }
+   }
 }
 
 resource "google_compute_firewall" "default" {
