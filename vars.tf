@@ -19,21 +19,21 @@ variable "privatekey" {
 }
 
 variable "user" {
-  description = "creds"
+  description = "General user"
   default = ""
 }
 
 variable "pass" {
-  description = "creds"
+  description = "General pass"
   default = ""
 }
 
 variable "s1user" {
-  description = "creds"
+  description = "nzbget server 1 user"
   default = ""
 }
 
 variable "s1pass" {
-  description = "creds"
+  description = "nzbget server 1 pass"
   default = ""
 }
