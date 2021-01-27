@@ -31,7 +31,6 @@ resource "google_compute_instance" "instance1" {
       image = "ubuntu-1804-lts"
       type  = "pd-ssd"
       size = 105
-      physical_block_size_bytes = 4096
     }
   }
   
