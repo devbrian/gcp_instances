@@ -23,6 +23,10 @@ resource "google_compute_instance" "example" {
   }
 
   metadata_startup_script = file("scripts/startup.sh")
+ 
+  metadata = {
+    ssh-keys = "root:${file(var.publickey)}"
+  }
 }
 
 resource "google_compute_firewall" "default" {
