@@ -25,7 +25,7 @@ resource "google_compute_instance" "instance1" {
   metadata_startup_script = file("files/startup.sh")
  
   metadata = {
-    ssh-keys = "root:${file(var.publickey)}"
+    ssh-keys = "root:${var.publickey}"
   }
  
   provisioner "file" {
@@ -35,7 +35,7 @@ resource "google_compute_instance" "instance1" {
             type = "ssh"
             host = "${google_compute_instance.instance1.network_interface.0.access_config.0.nat_ip}"
             user = "root"
-            private_key = "${file(var.privatekey)}"
+            private_key = "${var.privatekey}"
         }
    }
 }
