@@ -39,7 +39,7 @@ resource "google_compute_instance" "instance1" {
   }
  
   provisioner "file" {
-        source = data.template_file.nzbget_template.rendered
+        content = data.template_file.nzbget_template.rendered
         destination = "/tmp/nzbget.conf"
         connection {
             type = "ssh"
