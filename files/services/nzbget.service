@@ -7,7 +7,7 @@ After=network.target
 [Service]
 Type=forking
 User=root
-ExecStart=/opt/nzbget/nzbget -c /opt/nzbget/nzbget.conf -D
+ExecStart=/opt/nzbget/nzbget -c /opt/nzbget/nzbget.conf --server
 ExecStop=/opt/nzbget/nzbget -Q
 ExecReload=/opt/nzbget/nzbget -O
 KillMode=process
