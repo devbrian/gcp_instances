@@ -11,13 +11,13 @@ data "template_file" "nzbget_template" {
 provider "google" {
  credentials = var.google_sa
  project     = var.google_project
- region      = "us-west1"
+ region      = "us-east1"
 }
 
 resource "google_compute_instance" "instance1" {
   name          = "instance1"
   machine_type  = "f1-micro"
-  zone          = "us-east1-b"
+  zone          = "us-east1-a"
   
   boot_disk {
     initialize_params {
