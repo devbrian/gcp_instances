@@ -29,7 +29,15 @@ resource "google_compute_instance" "instance1" {
   boot_disk {
     initialize_params {
       image = "ubuntu-1804-lts"
+      type  = "pd-ssd"
+      size = 105
+      physical_block_size_bytes = 4096
     }
+  }
+  
+  scratch_disk {
+    interface = "SCSI"
+    source = ???
   }
   
   network_interface {
