@@ -13,7 +13,7 @@ mkdir --parents /root/.config/rclone/
 mv /tmp/rclone.conf /root/.config/rclone/rclone.conf
 
 git clone https://github.com/l3uddz/cloudplow /opt/cloudplow
-apt install python3-pip
+apt-get install python3-pip
 cd /opt/cloudplow
 python3 -m pip install -r requirements.txt
 ln -s /opt/cloudplow/cloudplow.py /usr/local/bin/cloudplow
