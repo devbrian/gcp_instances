@@ -4,7 +4,7 @@ provider "google" {
  region      = "us-east1"
 }
 
-resource "google_compute_instance" "example" {
+resource "google_compute_instance" "instance1" {
   name          = "instance1"
   machine_type  = "f1-micro"
   zone          = "us-east1-b"
