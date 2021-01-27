@@ -1,4 +1,4 @@
-# /etc/systemd/system/cloudplow.service
+# /etc/systemd/system/nzbget.service
 
 [Unit]
 Description=NZBGet Daemon
