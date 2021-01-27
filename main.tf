@@ -37,7 +37,6 @@ resource "google_compute_instance" "instance1" {
   
   scratch_disk {
     interface = "SCSI"
-    source = ???
   }
   
   network_interface {
