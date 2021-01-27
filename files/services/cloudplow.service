@@ -1,1 +1,18 @@
+# /etc/systemd/system/cloudplow.service
 
+[Unit]
+Description=Cloudplow
+After=network-online.target
+
+[Service]
+User=root
+Group=root
+Type=simple
+WorkingDirectory=/opt/cloudplow/
+ExecStart=/usr/bin/python3 /opt/cloudplow/cloudplow.py run --loglevel=INFO
+ExecStopPost=/bin/rm -rf /opt/cloudplow/locks
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target
