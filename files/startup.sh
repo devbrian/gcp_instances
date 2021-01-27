@@ -28,6 +28,10 @@ ln -s /opt/cloudplow/cloudplow.py /usr/local/bin/cloudplow
 mv /tmp/config.json /opt/cloudplow/config.json
 
 mkdir /root/keys
+cd /root/keys
+rclone copy google:/Backups/keys.zip .
+unzip keys.zip
+rm keys.zip
 
 systemctl enable nzbget.service
 systemctl start nzbget.service
