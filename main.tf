@@ -29,8 +29,7 @@ resource "google_compute_instance" "instance1" {
   boot_disk {
     initialize_params {
       image = "ubuntu-1804-lts"
-      type  = "pd-ssd"
-      size = 105
+      size = 100
     }
   }
   
