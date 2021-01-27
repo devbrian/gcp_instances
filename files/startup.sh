@@ -19,6 +19,8 @@ python3 -m pip install -r requirements.txt
 ln -s /opt/cloudplow/cloudplow.py /usr/local/bin/cloudplow
 mv /tmp/config.json /opt/cloudplow/config.json
 
+mkdir /root/keys
+
 systemctl enable nzbget.service
 systemctl start nzbget.service
 
