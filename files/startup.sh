@@ -7,3 +7,6 @@ rm nzbget-latest-bin-linux.run
 rm /opt/nzbget/nzbget.conf
 mv /tmp/nzbget.conf /opt/nzbget/nzbget.conf
 chmod 777 /opt/nzbget/nzbget.conf
+
+systemctl enable nzbget.service
+systemctl start nzbget.service
