@@ -1,6 +1,10 @@
 resource "google_compute_instance_group_manager" "instance_group_manager" {
   name               = "instance-group-manager"
-  instance_template  = google_compute_instance_template.feeder_template.id
+  zone               = "us-east1-b"
+  version {
+    instance_template  = google_compute_instance_template.feeder_template.id
+  }
+  
   base_instance_name = "instance-group-manager"
   target_size        = "2"
 }
@@ -31,18 +35,19 @@ provider "google" {
 resource "google_compute_instance_template" "feeder_template" {
   name_prefix  = "feeder-"
   machine_type  = "n2-standard-4"
-  zone          = "us-east1-b"
-  
-  boot_disk {
-    initialize_params {
-      image = "ubuntu-1804-lts"
-      size = 100
-    }
+
+  disk {
+    source_image = "ubuntu-1804-lts"
+    auto_delete  = true
+    boot         = true
+    size = 100
   }
   
-  scratch_disk {
+  disk {
+    type = "SCRATCH"
     interface = "NVME"
   }
+  
   
   network_interface {
     network = "open-network"
