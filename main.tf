@@ -1,3 +1,10 @@
+resource "google_compute_instance_group_manager" "instance_group_manager" {
+  name               = "instance-group-manager"
+  instance_template  = google_compute_instance_template.feeder_template.id
+  base_instance_name = "instance-group-manager"
+  target_size        = "2"
+}
+
 data "template_file" "nzbget_template" {
   template = file("files/nzbget.conf")
   vars = {
@@ -21,8 +28,8 @@ provider "google" {
  region      = "us-east1"
 }
 
-resource "google_compute_instance" "instance1" {
-  name          = "instance1"
+resource "google_compute_instance_template" "feeder_template" {
+  name_prefix  = "feeder-"
   machine_type  = "n2-standard-4"
   zone          = "us-east1-b"
   
