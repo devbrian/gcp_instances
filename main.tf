@@ -23,13 +23,13 @@ provider "google" {
 
 resource "google_compute_instance" "instance1" {
   name          = "instance1"
-  machine_type  = "e2-standard-16"
+  machine_type  = "n2-standard-4"
   zone          = "us-east1-b"
   
   boot_disk {
     initialize_params {
       image = "ubuntu-1804-lts"
-      size = 300
+      size = 100
     }
   }
   
