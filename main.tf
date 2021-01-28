@@ -40,7 +40,7 @@ resource "google_compute_instance_template" "feeder_template" {
     source_image = "ubuntu-1804-lts"
     auto_delete  = true
     boot         = true
-    size = 100
+    disk_size_gb = 100
   }
   
   disk {
