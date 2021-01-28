@@ -1,4 +1,10 @@
 #! /bin/bash
+
+mkfs.ext4 -F /dev/nvme0n1
+mkdir /mnt/unionfs/
+mount /dev/nvme0n1 /mnt/unionfs/
+chmod 777 /mnt/unionfs/
+
 apt-get update
 cd /opt/
 
