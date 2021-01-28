@@ -1,14 +1,3 @@
-resource "google_compute_instance_group_manager" "instance_group_manager" {
-  name               = "instance-group-manager"
-  zone               = "us-east1-b"
-  version {
-    instance_template  = google_compute_instance_template.feeder_template.id
-  }
-  
-  base_instance_name = "instance-group-manager"
-  target_size        = "2"
-}
-
 data "template_file" "nzbget_template" {
   template = file("files/nzbget.conf")
   vars = {
@@ -32,22 +21,21 @@ provider "google" {
  region      = "us-east1"
 }
 
-resource "google_compute_instance_template" "feeder_template" {
-  name_prefix  = "feeder-"
+resource "google_compute_instance" "instance1" {
+  name          = "instance1"
   machine_type  = "n2-standard-4"
-
-  disk {
-    source_image = "ubuntu-1804-lts"
-    auto_delete  = true
-    boot         = true
-    disk_size_gb = 100
+  zone          = "us-east1-b"
+  
+  boot_disk {
+    initialize_params {
+      image = "ubuntu-1804-lts"
+      size = 100
+    }
   }
   
-  disk {
-    type = "SCRATCH"
+  scratch_disk {
     interface = "NVME"
   }
-  
   
   network_interface {
     network = "open-network"
@@ -67,6 +55,7 @@ resource "google_compute_instance_template" "feeder_template" {
         destination = "/tmp/nzbget.conf"
         connection {
             type = "ssh"
+            host = google_compute_instance.instance1.network_interface.0.access_config.0.nat_ip
             user = "root"
             private_key = var.privatekey
         }
@@ -77,6 +66,7 @@ resource "google_compute_instance_template" "feeder_template" {
         destination = "/etc/systemd/system/nzbget.service"
         connection {
             type = "ssh"
+            host = google_compute_instance.instance1.network_interface.0.access_config.0.nat_ip
             user = "root"
             private_key = var.privatekey
         }
@@ -87,6 +77,7 @@ resource "google_compute_instance_template" "feeder_template" {
         destination = "/etc/systemd/system/cloudplow.service"
         connection {
             type = "ssh"
+            host = google_compute_instance.instance1.network_interface.0.access_config.0.nat_ip
             user = "root"
             private_key = var.privatekey
         }
@@ -97,6 +88,7 @@ resource "google_compute_instance_template" "feeder_template" {
         destination = "/tmp/config.json"
         connection {
             type = "ssh"
+            host = google_compute_instance.instance1.network_interface.0.access_config.0.nat_ip
             user = "root"
             private_key = var.privatekey
         }
@@ -107,6 +99,7 @@ resource "google_compute_instance_template" "feeder_template" {
         destination = "/tmp/rclone.conf"
         connection {
             type = "ssh"
+            host = google_compute_instance.instance1.network_interface.0.access_config.0.nat_ip
             user = "root"
             private_key = var.privatekey
         }
