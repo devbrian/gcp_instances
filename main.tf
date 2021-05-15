@@ -17,7 +17,7 @@ data "template_file" "rclone_template" {
 
 provider "google" {
  credentials = var.google_sa
- project     = var.google_project
+ project     = "pelagic-bastion-313721"
  region      = "us-east1"
 }
 
